@@ -66,6 +66,12 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <!-- Swagger -->
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -78,7 +84,7 @@
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>7.34.2</version>
-            <scope>compile</scope>
+            <scope>test</scope>
         </dependency>
 
         <!-- Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-junit-platform-engine -->
@@ -94,8 +100,16 @@
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-spring</artifactId>
             <version>7.34.1</version>
-            <scope>compile</scope>
+            <scope>test</scope>
         </dependency>
+
+        <!-- JUnit Platform Suite para @Suite -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 	<build>
@@ -134,8 +148,20 @@
                     <!--suppress UnresolvedMavenProperty -->
                     <argLine>${jacoco.agent}</argLine>
                     <includes>
-                        <include>**/*Cucumber*Test.java</include>
+                        <include>**/*Tests.java</include>
+                        <include>**/*Test.java</include>
+                        <include>**/*Runner*.java</include>
+                        <include>**/*Cucumber*.java</include>
                     </includes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
 
