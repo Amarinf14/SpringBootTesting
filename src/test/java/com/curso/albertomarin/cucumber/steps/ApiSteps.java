@@ -1,37 +1,47 @@
 package com.curso.albertomarin.cucumber.steps;
 
+import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.boot.test.context.SpringBootTest;
-import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.http.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@CucumberContextConfiguration
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ApiSteps {
-    @Autowired
-    private RestTemplate restTemplate;
 
+    @LocalServerPort
+    private int port;
+
+    private final RestTemplate restTemplate = new RestTemplate();
     private ResponseEntity<String> response;
 
-    @When("I GET {string}")
-    public void getEndpoint(String path) {
-        response = restTemplate.getForEntity(path, String.class);
+    private String getBaseUrl() {
+        return "http://localhost:" + port;
     }
 
-    @When("I POST {string} with body:")
+    // Cambiamos {string} por una expresión que acepte la ruta directa
+    @When("I GET {path}")
+    public void getEndpoint(String path) {
+        response = restTemplate.getForEntity(getBaseUrl() + path, String.class);
+    }
+
+    @When("I POST {path} with body:")
     public void postEndpoint(String path, String body) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> request = new HttpEntity<>(body, headers);
-        response = restTemplate.postForEntity(path, request, String.class);
+        response = restTemplate.postForEntity(getBaseUrl() + path, request, String.class);
     }
 
     @Then("response status is {int}")
     public void checkStatus(int status) {
-        assertEquals(status, response.getStatusCode());
+        assertEquals(status, response.getStatusCode().value());
+    }
+
+    // Esto le enseña a Cucumber qué es un {path}
+    @ParameterType(".+")
+    public String path(String path) {
+        return path;
     }
 }
