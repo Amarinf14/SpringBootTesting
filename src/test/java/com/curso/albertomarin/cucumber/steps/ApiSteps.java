@@ -1,4 +1,4 @@
-package com.curso.albertomarin.steps;
+package com.curso.albertomarin.cucumber.steps;
 
 import io.cucumber.java.en.*;
 import org.springframework.beans.factory.annotation.Autowired;
