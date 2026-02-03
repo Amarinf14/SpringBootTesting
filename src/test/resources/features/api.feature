@@ -1,11 +1,20 @@
-Feature: API Testing
-  Scenario: Get all users
-    When I GET /api/users
-    Then response status is 200
+Feature: Gestión completa de Clientes API
+  Scenario: Ciclo de vida completo de un cliente
+    # CREATE
+    When registro un nuevo cliente con nombre "Marín" y email "marin.test@gmail.com"
+    Then el cliente es guardado exitosamente
 
-  Scenario: Create user
-    When I POST /api/users with body:
-      """
-      {"name": "Test User", "email": "test@example.com"}
-      """
-    Then response status is 201
+    # READ (FindAll)
+    And el cliente aparece en la lista total de clientes
+
+    # UPDATE
+    When actualizo el nombre del cliente creado a "Pedro" y su email a "pedro.test@gmail.com"
+    Then el cliente con ID guardado tiene como nombre "Pedro"
+
+    # DELETE
+    When elimino el cliente creado
+    Then el cliente ya no existe en el sistema
+
+    # EXCEPTION
+    When elimino un cliente con ID 9999
+    Then el sistema responde con un error 404
