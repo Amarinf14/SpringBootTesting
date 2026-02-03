@@ -1,12 +1,13 @@
 # Cliente Management API
 
-![Banner API]([http://googleusercontent.com/image_collection/image_retrieval/13524848555152263167_0](https://www.aegissofttech.com/images/banner/spring-boot-banner.webp))
+![Spring Boot Banner](https://www.aegissofttech.com/images/banner/spring-boot-banner.webp)
 
 [![Java](https://img.shields.io/badge/Java-21-orange?logo=openjdk&logoColor=white&style=for-the-badge)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2.2-brightgreen?logo=springboot&logoColor=white&style=for-the-badge)](https://spring.io/projects/spring-boot)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue?logo=postgresql&logoColor=white&style=for-the-badge)](https://www.postgresql.org/)
 [![Maven](https://img.shields.io/badge/Maven-3.9-C71A36?logo=apachemaven&logoColor=white&style=for-the-badge)](https://maven.apache.org/)
 [![Cucumber](https://img.shields.io/badge/Cucumber-BDD-00a818?logo=cucumber&logoColor=white&style=for-the-badge)](https://cucumber.io/)
+[![JaCoCo](https://img.shields.io/badge/JaCoCo-0.8.11-yellow?logo=jacoco&logoColor=white&style=for-the-badge)](https://www.jacoco.org/)
 
 Sistema robusto de gestión de clientes desarrollado bajo la arquitectura **RESTful** con Spring Boot. Este proyecto implementa un ciclo de vida completo de datos (CRUD) utilizando una arquitectura de capas y un enfoque estricto en la calidad de software mediante **BDD (Behavior Driven Development)**.
 
